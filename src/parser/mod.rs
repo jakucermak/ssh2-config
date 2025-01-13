@@ -222,6 +222,7 @@ impl SshConfigParser {
             Field::User => {
                 params.user = Some(Self::parse_string(args)?);
             }
+            Field::ProxyJump => params.proxy_jump = Some(Self::parse_comma_separated_list(args)?),
             // -- unimplemented fields
             Field::AddKeysToAgent
             | Field::AddressFamily
@@ -274,7 +275,6 @@ impl SshConfigParser {
             | Field::PKCS11Provider
             | Field::PreferredAuthentications
             | Field::ProxyCommand
-            | Field::ProxyJump
             | Field::ProxyUseFdpass
             | Field::PubkeyAcceptedKeyTypes
             | Field::RekeyLimit

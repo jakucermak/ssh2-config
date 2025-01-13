@@ -58,6 +58,8 @@ pub struct HostParams {
     pub use_keychain: Option<bool>,
     /// Specifies the user to log in as.
     pub user: Option<String>,
+    ///
+    pub proxy_jump: Option<Vec<String>>,
     /// fields that the parser wasn't able to parse
     pub ignored_fields: HashMap<String, Vec<String>>,
     /// fields that the parser was able to parse but ignored
@@ -169,6 +171,10 @@ impl HostParams {
         if let Some(user) = b.user.as_deref() {
             self.user = Some(user.to_owned());
         }
+
+        // if let Some(proxy_jump) = b.proxy_jump {
+        //     self.proxy_jump = Some(proxy_jump)
+        // }
         for (ignored_field, args) in &b.ignored_fields {
             if !self.ignored_fields.contains_key(ignored_field) {
                 self.ignored_fields
